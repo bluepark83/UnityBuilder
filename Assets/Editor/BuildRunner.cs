@@ -47,9 +47,12 @@ public partial class BuildRunner
         Debug.Log($"UpdateLocationPathName : {path}");
         if (Directory.Exists(path) == false)
         {
-            Directory.CreateDirectory(path);
-            
-            Debug.Log($"CreateDirectory : {path}");
+            if (File.Exists(path) == false)
+            {
+                Directory.CreateDirectory(path);
+
+                Debug.Log($"CreateDirectory : {path}");
+            }
         }
 
         refLocationName = path;
