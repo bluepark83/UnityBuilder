@@ -39,7 +39,7 @@ public partial class BuildRunner
 
     static void CreateDirectory()
     {
-        var dir = GetArgValue("--OUTPUTPATH");
+        var dir = GetArgValue("-OUTPUTPATH");
         
         if (!Directory.Exists(dir))
             Directory.CreateDirectory(dir);
