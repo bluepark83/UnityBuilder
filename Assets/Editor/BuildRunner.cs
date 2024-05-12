@@ -21,11 +21,11 @@ public partial class BuildRunner
         var fileName = string.Empty;
         if (buildTarget == BuildTarget.Android)
         {
-            fileName = $"Builds\\{Application.productName}.apk";
+            fileName = $"{Application.productName}.apk";
         }
         else if (buildTarget == BuildTarget.StandaloneWindows64)
         {
-            fileName = $"Builds\\{Application.productName}.exe";
+            fileName = $"{Application.productName}.exe";
         }
 
         UpdateLocationPathName(ref locationPathName, fileName);
