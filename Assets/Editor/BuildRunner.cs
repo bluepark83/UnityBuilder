@@ -15,7 +15,6 @@ public partial class BuildRunner
         }
 
         string[] levels = { "Assets/Scenes/SampleScene.unity" };
-        var locationPathName = string.Empty;
 
         var buildTarget = EvaluateBuildTarget();
         var fileName = string.Empty;
@@ -28,38 +27,24 @@ public partial class BuildRunner
             fileName = $"{Application.productName}.exe";
         }
 
-        UpdateLocationPathName(ref locationPathName, fileName);
+        CreateDirectory();
 
         var report = BuildPipeline.BuildPlayer(levels, 
-            locationPathName,
+            fileName,
             buildTarget, 
             BuildOptions.None);
 
         ReportBuildSummary(report);
     }
 
-    static void UpdateLocationPathName(ref string refLocationName, string filename)
+    static void CreateDirectory()
     {
-        var value = GetArgValue("-buildWindows64Player");
+        var dir = GetArgValue("-buildWindows64Player");
         
-        var path = Path.Join(value, filename);
-
-        Debug.Log($"UpdateLocationPathName : {path}");
-        if (Directory.Exists(path) == false)
-        {
-            if (File.Exists(path) == false)
-            {
-                Directory.CreateDirectory(path);
-
-                Debug.Log($"CreateDirectory : {path}");
-            }
-        }
-
-        refLocationName = path;
-        
-        Debug.Log($"refLocationName : {refLocationName}");
+        if (!Directory.Exists(dir))
+            Directory.CreateDirectory(dir);
     }
-
+    
     public static void BuildAddressablesAndPlayer()
     {
         BuildAddressables();
