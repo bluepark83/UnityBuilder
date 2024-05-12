@@ -44,10 +44,17 @@ public partial class BuildRunner
         
         var path = Path.Join(value, filename);
 
-        if ( Directory.Exists(path) == false)
+        Debug.Log($"UpdateLocationPathName : {path}");
+        if (Directory.Exists(path) == false)
+        {
             Directory.CreateDirectory(path);
+            
+            Debug.Log($"CreateDirectory : {path}");
+        }
 
         refLocationName = path;
+        
+        Debug.Log($"refLocationName : {refLocationName}");
     }
 
     public static void BuildAddressablesAndPlayer()
