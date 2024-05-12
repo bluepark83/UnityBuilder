@@ -1,3 +1,4 @@
+using System.IO;
 using UnityEditor;
 using UnityEditor.Build.Reporting;
 using UnityEngine;
@@ -14,23 +15,38 @@ public partial class BuildRunner
         }
 
         string[] levels = { "Assets/Scenes/SampleScene.unity" };
-        var locationPathName = "Builds\\sample.apk";
+        var locationPathName = string.Empty;
 
-        
         var buildTarget = EvaluateBuildTarget();
+        var fileName = string.Empty;
         if (buildTarget == BuildTarget.Android)
         {
-            locationPathName = $"Builds\\{Application.productName}.apk";
+            fileName = $"{Application.productName}.apk";
         }
         else if (buildTarget == BuildTarget.StandaloneWindows64)
         {
-            locationPathName = $"Builds\\{Application.productName}.exe";
+            fileName = $"{Application.productName}.exe";
         }
 
-        var report = BuildPipeline.BuildPlayer(levels, locationPathName,
-            buildTarget, BuildOptions.None);
+        UpdateLocationPathName(ref locationPathName, fileName);
+
+        var report = BuildPipeline.BuildPlayer(levels, 
+            locationPathName,
+            buildTarget, 
+            BuildOptions.None);
 
         ReportBuildSummary(report);
+    }
+
+    static void UpdateLocationPathName(ref string refLocationName, string filename)
+    {
+        var value = GetArgValue("-buildWindows64Player");
+        
+        var path = Path.Join(value, filename);
+
+        Directory.CreateDirectory(path);
+
+        refLocationName = path;
     }
 
     public static void BuildAddressablesAndPlayer()
