@@ -14,27 +14,35 @@ public partial class BuildRunner
             Debug.Log($"arg : {arg}");
         }
 
-        string[] levels = { "Assets/Scenes/SampleScene.unity" };
-
-        var buildTarget = EvaluateBuildTarget();
-        var fileName = string.Empty;
-        if (buildTarget == BuildTarget.Android)
+        //string[] levels = { "Assets/Scenes/SampleScene.unity" };
+        // var buildTarget = EvaluateBuildTarget();
+        // var fileName = string.Empty;
+        // if (buildTarget == BuildTarget.Android)
+        // {
+        //     fileName = $"{Application.productName}.apk";
+        // }
+        // else if (buildTarget == BuildTarget.StandaloneWindows64)
+        // {
+        //     fileName = $"{Application.productName}.exe";
+        // }
+        
+        BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
         {
-            fileName = $"{Application.productName}.apk";
-        }
-        else if (buildTarget == BuildTarget.StandaloneWindows64)
-        {
-            fileName = $"{Application.productName}.exe";
-        }
+            scenes = new [] { "Assets/Scenes/SampleScene.unity" },
+            locationPathName = "Android",
+            target = BuildTarget.Android,
+            options = BuildOptions.None
+        };
+        BuildPipeline.BuildPlayer (buildPlayerOptions);
 
         CreateDirectory();
 
-        var report = BuildPipeline.BuildPlayer(levels, 
-            fileName,
-            buildTarget, 
-            BuildOptions.None);
+        // var report = BuildPipeline.BuildPlayer(levels, 
+        //     fileName,
+        //     buildTarget, 
+        //     BuildOptions.None);
 
-        ReportBuildSummary(report);
+        //ReportBuildSummary(report);
     }
 
     static void CreateDirectory()
