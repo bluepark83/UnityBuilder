@@ -21,11 +21,11 @@ public partial class BuildRunner
         var fileName = string.Empty;
         if (buildTarget == BuildTarget.Android)
         {
-            fileName = $"{Application.productName}.apk";
+            fileName = $"Builds\\{Application.productName}.apk";
         }
         else if (buildTarget == BuildTarget.StandaloneWindows64)
         {
-            fileName = $"{Application.productName}.exe";
+            fileName = $"Builds\\{Application.productName}.exe";
         }
 
         UpdateLocationPathName(ref locationPathName, fileName);
@@ -44,7 +44,8 @@ public partial class BuildRunner
         
         var path = Path.Join(value, filename);
 
-        Directory.CreateDirectory(path);
+        if ( Directory.Exists(path) == false)
+            Directory.CreateDirectory(path);
 
         refLocationName = path;
     }
