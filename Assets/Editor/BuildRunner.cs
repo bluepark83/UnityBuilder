@@ -17,18 +17,22 @@ public partial class BuildRunner
         var buildVersion = GetArgValue("APPVERSION");
         PlayerSettings.bundleVersion = buildVersion;
         
+        var outPath = GetArgValue("-OUTPUTPATH");
+        
+        
         BuildTarget buildTarget = EvaluateBuildTarget();
+        var fileName = buildTarget == BuildTarget.Android ? "Rohan2.apk" : "Rohan2.exe";
+        
+        var fullPath = $"{outPath}/{fileName}";
         
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
         {
             scenes = new [] { "Assets/Scenes/SampleScene.unity" },
-            locationPathName = "Android",
+            locationPathName = fullPath,
             target = buildTarget,
             options = BuildOptions.None
         };
         BuildPipeline.BuildPlayer (buildPlayerOptions);
-
-        CreateDirectory();
 
         // var report = BuildPipeline.BuildPlayer(levels, 
         //     fileName,
@@ -38,14 +42,6 @@ public partial class BuildRunner
         //ReportBuildSummary(report);
     }
 
-    static void CreateDirectory()
-    {
-        var dir = GetArgValue("-OUTPUTPATH");
-        
-        if (!Directory.Exists(dir))
-            Directory.CreateDirectory(dir);
-    }
-    
     public static void BuildAddressablesAndPlayer()
     {
         BuildAddressables();
