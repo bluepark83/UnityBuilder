@@ -14,11 +14,14 @@ public partial class BuildRunner
             Debug.Log($"arg : {arg}");
         }
 
-        var buildVersion = GetArgValue("APPVERSION");
+        var buildVersion = GetArgValue("-APPVERSION");
         PlayerSettings.bundleVersion = buildVersion;
+        Debug.Log($"BuildVersion : {buildVersion}");
+        
+        CreateDirectory();
         
         var outPath = GetArgValue("-OUTPUTPATH");
-        
+        Debug.Log($"output Path : {outPath}");
         
         BuildTarget buildTarget = EvaluateBuildTarget();
         var fileName = buildTarget == BuildTarget.Android ? "Rohan2.apk" : "Rohan2.exe";
@@ -42,6 +45,14 @@ public partial class BuildRunner
         //ReportBuildSummary(report);
     }
 
+    static void CreateDirectory()
+    {
+        var dir = GetArgValue("-OUTPUTPATH");
+        
+        if (!Directory.Exists(dir))
+            Directory.CreateDirectory(dir);
+    }
+    
     public static void BuildAddressablesAndPlayer()
     {
         BuildAddressables();
