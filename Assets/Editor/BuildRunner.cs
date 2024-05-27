@@ -63,14 +63,19 @@ public partial class BuildRunner
     {
         var value = GetArgValue("-buildTarget");
 
-        if (string.IsNullOrEmpty(value))
-            return BuildTarget.Android;
-
-        return value switch
+        switch (value)
         {
-            "Win64" => BuildTarget.StandaloneWindows64,
-            "Android" => BuildTarget.Android,
-            _ => BuildTarget.Android
-        };
+            case "Win64":
+                EditorUserBuildSettings.standaloneBuildSubtarget = StandaloneBuildSubtarget.Player;
+                EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Standalone, BuildTarget.StandaloneWindows64);
+                break;
+            // case "Android":
+            default:
+                EditorUserBuildSettings.standaloneBuildSubtarget = StandaloneBuildSubtarget.Player;
+                EditorUserBuildSettings.SwitchActiveBuildTarget(BuildTargetGroup.Android, BuildTarget.Android);
+                return BuildTarget.Android;
+        }
+
+        return (BuildTarget)0;
     }
 }
