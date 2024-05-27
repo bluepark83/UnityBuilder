@@ -27,7 +27,7 @@ public partial class BuildRunner
         var fileName = buildTarget == BuildTarget.Android ? "Rohan2.apk" : "Rohan2.exe";
         
         var fullPath = $"{outPath}/{fileName}";
-        
+        Debug.Log($"fullPath : {fullPath}");
         BuildPlayerOptions buildPlayerOptions = new BuildPlayerOptions
         {
             scenes = new [] { "Assets/Scenes/SampleScene.unity" },
