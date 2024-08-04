@@ -1,3 +1,4 @@
+using System;
 using UnityEditor;
 using UnityEditor.AddressableAssets.Settings;
 using UnityEngine;
@@ -27,7 +28,22 @@ public partial class BuildEditorwindow : EditorWindow
             
         if (GUILayout.Button("Build only"))
         {
-            BuildRunner.BuildPlayer();
+            var arguments = new[]
+            {
+                "-SPLASH",
+                "1",
+                
+                "-APPVERSION",
+                "0.9.8",
+                
+                "-OUTPUTPATH",
+                $@"C:\\RM2_Build\\{DateTime.Now:yyyyMMddHHmm}",
+                
+                "-buildTarget",
+                "Win64"
+            };
+            
+            BuildRunner.BuildPlayer(arguments);
         }
             
         if (GUILayout.Button("Build Addressables & Player"))
