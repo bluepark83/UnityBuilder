@@ -8,6 +8,7 @@ public partial class BuildRunner
 {
     public static bool BuildAddressables()
     {
+        
         AddressableAssetSettings.CleanPlayerContent();
         BuildCache.PurgeCache(false);
         

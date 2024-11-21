@@ -5,9 +5,9 @@ EditorBuildSettings:
   m_ObjectHideFlags: 0
   serializedVersion: 2
   m_Scenes:
-  - enabled: 1
-    path: Assets/Scenes/SampleScene.unity
-    guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 0
+    path: Assets/Scenes/World/dun_cron.unity
+    guid: 2b7bd54c4d8ef1e4395d8ccdcc608f5b
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 8afbb84ece82c034da61549606aec008,
       type: 2}

@@ -13,11 +13,11 @@ namespace Editor
 
         public void OnProcessScene(Scene scene, BuildReport report)
         {
-            Debug.Log($"OnProcessScene : {scene.name}");
-            ContentBuildInterface.CalculatePlayerDependenciesForScene(scene.name, new BuildSettings(),
-                new BuildUsageTagSet(), new BuildUsageCache());
-            
-            _processSceneWithReportImplementation.OnProcessScene(scene, report);
+            // Debug.Log($"OnProcessScene : {scene.name}");
+            // ContentBuildInterface.CalculatePlayerDependenciesForScene(scene.name, new BuildSettings(),
+            //     new BuildUsageTagSet(), new BuildUsageCache());
+            //
+            // _processSceneWithReportImplementation.OnProcessScene(scene, report);
         }
     }
 }
