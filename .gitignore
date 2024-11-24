@@ -1,0 +1,6 @@
+﻿Library
+ServerData
+UserSettings
+Logs
+*.csproj
+*.sln
