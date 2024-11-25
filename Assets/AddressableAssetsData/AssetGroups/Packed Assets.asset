@@ -15,21 +15,17 @@ MonoBehaviour:
   m_GroupName: Packed Assets
   m_Data:
     m_SerializedData: []
-  m_GUID: d5929366ec8d3574897ecf4382be3388
+  m_GUID: 084dca10b455ae04f982c762182175c5
   m_SerializeEntries:
   - m_GUID: 2b7bd54c4d8ef1e4395d8ccdcc608f5b
     m_Address: Assets/Scenes/World/dun_cron.unity
     m_ReadOnly: 0
-    m_SerializedLabels: []
-    FlaggedDuringContentUpdateRestriction: 0
-  - m_GUID: 99c9720ab356a0642a771bea13969a05
-    m_Address: Assets/Scenes/SampleScene.unity
-    m_ReadOnly: 0
-    m_SerializedLabels: []
+    m_SerializedLabels:
+    - default
     FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 0
-  m_Settings: {fileID: 11400000, guid: e56996de1720a594b9c6fc0b290fb128, type: 2}
+  m_Settings: {fileID: 11400000, guid: a91ff380c2ecf904787c91be40f811c8, type: 2}
   m_SchemaSet:
     m_Schemas:
-    - {fileID: 11400000, guid: 184a88a779c55a641a16452aea6dd22c, type: 2}
-    - {fileID: 11400000, guid: d9c942011f994b84f9ea426d056624e6, type: 2}
+    - {fileID: 11400000, guid: 8ecb3ce1da7da254cb3aaf1773aa359d, type: 2}
+    - {fileID: 11400000, guid: 58badfddace0d4c44aee39cedcf84449, type: 2}
